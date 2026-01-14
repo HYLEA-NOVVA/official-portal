@@ -1,1 +1,301 @@
+A<!DOCTYPE html> 
+<html lang="uk">
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>ГІЛЕЯ-НОВА | THE GREAT SOVEREIGNTY</title> 
+    <style> 
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Cinzel:wght@400;700;900&display=swap');
 
+        :root { 
+            --primary: #020617; 
+            --accent: #00f2ff; 
+            --gold: #ffcc00; 
+            --forest: #064e3b;
+            --text: #94a3b8; 
+            --white: #ffffff; 
+            --card-bg: rgba(15, 23, 42, 0.95);
+            --border-glow: rgba(0, 242, 255, 0.3);
+        } 
+
+        body { margin: 0; font-family: 'Space Grotesk', sans-serif; background-color: var(--primary); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; } 
+
+        /* --- BACKGROUNDS --- */
+        .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+        .stars { background: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.4; animation: moveStars 200s linear infinite; }
+        #forest-bg { background: radial-gradient(circle at center, var(--forest) 0%, var(--primary) 100%); opacity: 0; transition: 2s ease; z-index: -1; }
+        #leaf-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; display: none; }
+        .leaf { position: absolute; width: 15px; height: 15px; background: #10b981; border-radius: 2px 12px; opacity: 0.6; animation: fall 10s linear infinite; }
+
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); left: var(--x); opacity: 0; } 20% { opacity: 0.6; } 100% { transform: translateY(110vh) rotate(720deg); left: calc(var(--x) + 100px); opacity: 0; } }
+        @keyframes moveStars { from { background-position: 0 0; } to { background-position: 10000px 10000px; } }
+
+        /* --- NAV --- */
+        nav { display: flex; justify-content: center; padding: 25px 0; background: rgba(2, 6, 23, 0.9); position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-glow); backdrop-filter: blur(20px); } 
+        .nav-btn { background: none; border: none; color: var(--text); cursor: pointer; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; padding: 10px 25px; transition: 0.4s; } 
+        .nav-btn:hover { color: var(--accent); }
+
+        /* --- HERO --- */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 150px 20px; } 
+        h1 { font-family: 'Cinzel', serif; font-size: clamp(40px, 8vw, 130px); margin: 0; color: var(--white); letter-spacing: 25px; filter: drop-shadow(0 0 30px rgba(0,242,255,0.5)); }
+        .hero-subtitle { font-size: 18px; letter-spacing: 12px; color: var(--accent); margin-top: 20px; text-transform: uppercase; }
+
+        .cta-hero { margin-top: 50px; padding: 22px 60px; background: transparent; border: 2px solid var(--accent); color: var(--accent); font-family: 'Space Grotesk'; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; cursor: pointer; transition: 0.5s; border-radius: 0; position: relative; overflow: hidden; }
+        .cta-hero:hover { background: var(--accent); color: var(--primary); box-shadow: 0 0 40px var(--accent); }
+
+        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1100px; margin-top: 60px; }
+        .stat-item { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 20px; border: 1px solid rgba(0,242,255,0.2); backdrop-filter: blur(15px); }
+        .stat-val { display: block; font-size: clamp(24px, 4vw, 42px); font-weight: 700; color: var(--white); }
+        .stat-label { font-size: 10px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-top: 10px; }
+
+        .manifesto-container { max-width: 950px; margin-top: 60px; padding: 40px; background: rgba(255,255,255,0.02); border: 1px solid rgba(0,242,255,0.1); border-radius: 30px; }
+        .manifesto-text { font-size: 24px; line-height: 1.8; color: var(--white); font-weight: 300; }
+
+        /* --- TERRITORY --- */
+        .section-title { text-align: center; color: var(--white); letter-spacing: 15px; font-family: 'Cinzel'; margin: 120px 0 60px; font-size: 40px; text-transform: uppercase; }
+        
+        .territory-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 1100px; margin: 0 auto 50px; padding: 0 20px; }
+        .t-stat-card { background: rgba(0, 242, 255, 0.05); border: 1px solid rgba(0, 242, 255, 0.3); padding: 25px; border-radius: 15px; text-align: center; }
+        .t-stat-val { display: block; font-size: 32px; font-weight: 700; color: var(--accent); }
+        .t-stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-top: 5px; }
+
+        .main-img-box { width: 90%; max-width: 1100px; margin: 0 auto 30px; border: 1px solid var(--border-glow); border-radius: 40px; overflow: hidden; cursor: pointer; aspect-ratio: 16/9; }
+        .main-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
+        .main-img-box:hover img { transform: scale(1.05); }
+        
+        .map-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .map-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; aspect-ratio: 16/10; cursor: pointer; }
+        .map-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+
+        /* --- CITIZENSHIP --- */
+        .citizen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; max-width: 1600px; margin: 0 auto; padding: 80px 20px; }
+        .citizen-card { background: var(--card-bg); padding: 50px 40px; border: 1px solid rgba(0,242,255,0.15); border-radius: 40px; transition: 0.5s; display: flex; flex-direction: column; }
+        .citizen-card:hover { transform: translateY(-15px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(0,242,255,0.15); }
+        .card-lvl { font-size: 11px; letter-spacing: 4px; color: var(--accent); font-weight: 700; }
+        .citizen-card h3 { font-family: 'Cinzel'; color: #fff; font-size: 28px; margin: 15px 0; }
+        .price { font-size: 52px; color: var(--white); font-weight: 700; margin-bottom: 25px; }
+        .price span { font-size: 22px; color: var(--accent); }
+        .perks { font-size: 14px; list-style: none; padding: 0; line-height: 2.4; flex-grow: 1; margin-bottom: 30px; }
+        .perks li::before { content: "◆"; margin-right: 12px; color: var(--accent); }
+        
+        .btn-join { padding: 18px; background: transparent; border: 1px solid var(--accent); color: var(--accent); cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; transition: 0.3s; border-radius: 5px; }
+        .btn-join:hover { background: var(--accent); color: var(--primary); }
+
+        .special-card { border-color: var(--gold); }
+        .special-card .card-lvl, .special-card .price span, .special-card .btn-join { color: var(--gold); }
+        .special-card .btn-join { border-color: var(--gold); }
+        .special-card .btn-join:hover { background: var(--gold); color: var(--primary); }
+
+        /* --- ARTEFACTS (HYL GRID) --- */
+        .hyl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto 100px; padding: 0 20px; }
+        .hyl-box { background: rgba(0,242,255,0.05); border: 1px solid rgba(0,242,255,0.2); border-radius: 20px; aspect-ratio: 16/10; display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative; cursor: pointer; }
+        .hyl-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0.9; transition: 0.4s; }
+        .hyl-box:hover img { opacity: 1; transform: scale(1.05); }
+        .hyl-box span { z-index: 2; font-weight: 700; color: #fff; background: rgba(0,0,0,0.7); padding: 8px 18px; border-radius: 40px; font-size: 10px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1); }
+
+        .donation-window { grid-column: span 2; background: linear-gradient(45deg, rgba(255,204,0,0.1), rgba(0,242,255,0.1)); border: 2px dashed var(--gold); padding: 60px; border-radius: 40px; text-align: center; margin-top: 50px; }
+        .donation-window h3 { color: var(--gold); font-family: 'Cinzel'; font-size: 30px; letter-spacing: 8px; margin-bottom: 20px; }
+
+        /* --- PHILOSOPHY --- */
+        .philosophy-section { max-width: 1100px; margin: 150px auto; padding: 0 40px; }
+        .phil-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; }
+        .phil-card h2 { color: var(--accent); font-family: 'Cinzel'; letter-spacing: 5px; }
+        .phil-card p { font-size: 18px; line-height: 1.8; opacity: 0.8; }
+
+        /* --- CONTACT --- */
+        .contact-box { background: linear-gradient(135deg, rgba(2,6,23,1) 0%, rgba(0,242,255,0.15) 100%); border: 2px solid var(--accent); border-radius: 60px; padding: 120px 40px; margin: 150px auto; max-width: 1000px; text-align: center; position: relative; }
+        .contact-link { font-size: clamp(20px, 5vw, 45px); color: var(--accent); text-decoration: none; font-weight: 700; letter-spacing: 4px; display: block; margin: 40px 0; }
+
+        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; justify-content: center; align-items: center; cursor: pointer; }
+        #modal img { max-width: 90%; max-height: 90%; border: 1px solid var(--accent); box-shadow: 0 0 50px rgba(0,242,255,0.3); }
+        footer { padding: 100px; text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 6px; text-transform: uppercase; }
+    </style> 
+</head> 
+<body> 
+
+    <div class="bg-layer stars"></div>
+    <div class="bg-layer" id="forest-bg"></div>
+    <div id="leaf-container"></div>
+
+    <nav> 
+        <button class="nav-btn" onclick="scrollToTab('home')">МАНІФЕСТ</button> 
+        <button class="nav-btn" onclick="scrollToTab('territory')">ОСТРІВ</button> 
+        <button class="nav-btn" style="color:var(--gold)" onclick="scrollToTab('citizenship')">ГРОМАДЯНСТВО</button> 
+        <button class="nav-btn" onclick="scrollToTab('info')">АРТЕФАКТИ</button>
+    </nav> 
+
+    <section id="home"> 
+        <header class="hero"> 
+            <h1>ГІЛЕЯ-НОВА</h1> 
+            <div class="hero-subtitle">The Great Sovereign Order</div> 
+            <button class="cta-hero" onclick="scrollToTab('citizenship')">Стати громадянином</button>
+
+            <div class="stats-bar">
+                <div class="stat-item"><span class="stat-val" id="pop-count">0</span><span class="stat-label">Населення</span></div>
+                <div class="stat-item"><span class="stat-val" id="fund-count">0</span><span class="stat-label">Зібрано $</span></div>
+                <div class="stat-item"><span class="stat-val" id="rem-count">0</span><span class="stat-label">Залишилось $</span></div>
+            </div>
+
+            <div class="manifesto-container">
+                <p class="manifesto-text">"Ми будуємо світ, де технологія гарантує право, а територія належить тим, хто її створює. Гілея-Нова — це маніфест абсолютної незалежності в епоху цифрової трансформації."</p>
+            </div>
+        </header>
+    </section> 
+
+    <section id="territory"> 
+        <h2 class="section-title">ISLA CÉBACO | ТЕРИТОРІЯ</h2>
+        <div class="territory-stats">
+            <div class="t-stat-card"><span class="t-stat-val">15,000,000</span><span class="t-stat-label">Ціна Острова $</span></div>
+            <div class="t-stat-card"><span class="t-stat-val" id="t-raised">0</span><span class="t-stat-label">Вже накопичено $</span></div>
+            <div class="t-stat-card"><span class="t-stat-val" id="t-rem">15,000,000</span><span class="t-stat-label">Необхідна сума $</span></div>
+        </div>
+
+        <div class="main-img-box" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f858b5ef.jpg-1360-1100.jpg')">
+            <img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f858b5ef.jpg-1360-1100.jpg">
+        </div>
+        <div class="map-grid">
+            <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f765658e.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f765658e.jpg-1360-1100.jpg"></div>
+            <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f9a82465.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f9a82465.jpg-1360-1100.jpg"></div>
+            <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79fa147975.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79fa147975.jpg-1360-1100.jpg"></div>
+            <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f1dc4148.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f1dc4148.jpg-1360-1100.jpg"></div>
+        </div>
+    </section> 
+
+    <section id="citizenship"> 
+        <h2 class="section-title">СТУПЕНІ ГРОМАДЯНСТВА</h2>
+        <div class="citizen-grid">
+            <div class="citizen-card"><span class="card-lvl">Level 01</span><h3>E-RESIDENT</h3><div class="price"><span>$</span>50</div><ul class="perks"><li>Цифровий ID</li><li>Discord-ратуша</li><li>Право подачі петицій</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card"><span class="card-lvl">Level 02</span><h3>VOTER</h3><div class="price"><span>$</span>150</div><ul class="perks"><li>Право голосу в DAO</li><li>Пошта @hylaea.nova</li><li>Доступ до звітів</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card"><span class="card-lvl">Level 03</span><h3>FULL CITIZEN</h3><div class="price"><span>$</span>250</div><ul class="perks"><li>Фізичний паспорт</li><li>1 сотка землі</li><li>Повне виборче право</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card"><span class="card-lvl">Level 04</span><h3>PATRIOT</h3><div class="price"><span>$</span>500</div><ul class="perks"><li>Військовий квиток</li><li>2 сотки землі</li><li>Право на зброю</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card"><span class="card-lvl">Level 05</span><h3>DIPLOMAT</h3><div class="price"><span>$</span>1,000</div><ul class="perks"><li>Дипломатичний ID</li><li>Представницькі права</li><li>VIP канали зв'язку</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 06</span><h3>INVESTOR</h3><div class="price"><span>$</span>2,500</div><ul class="perks"><li>5 соток (берег)</li><li>Частка від туризму</li><li>Золотий сертифікат</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 07</span><h3>SENATOR</h3><div class="price"><span>$</span>5,000</div><ul class="perks"><li>Верхня палата Ради</li><li>Персональна печатка</li><li>Законодавча воля</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 08</span><h3>ARCHITECT</h3><div class="price"><span>$</span>10,000</div><ul class="perks"><li>15 соток землі</li><li>Ліцензія забудови</li><li>Ім'я в назві кварталу</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 09</span><h3>MINISTER</h3><div class="price"><span>$</span>25,000</div><ul class="perks"><li>Керівництво відомством</li><li>Резиденція на острові</li><li>Прямий вплив на курс</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 10</span><h3>COMMANDER</h3><div class="price"><span>$</span>50,000</div><ul class="perks"><li>Штаб оборони</li><li>Власна гвардія (5 осіб)</li><li>Сектор безпеки</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 11</span><h3>GUARDIAN</h3><div class="price"><span>$</span>100,000</div><ul class="perks"><li>Опікун нац. активів</li><li>Пожиттєва рента HYL</li><li>VIP медицина</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 12</span><h3>ELITE FOUNDER</h3><div class="price"><span>$</span>250,000</div><ul class="perks"><li>50 Га території</li><li>Право ВЕТО у Раді</li><li>Безподатковий статус</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 13</span><h3>LEGEND</h3><div class="price"><span>$</span>500,000</div><ul class="perks"><li>100 Га приватної землі</li><li>1% з експорту нації</li><li>Зал Слави Гілеї</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 14</span><h3>SUPREME ARCHON</h3><div class="price"><span>$</span>750,000</div><ul class="perks"><li>Власний шельф</li><li>Приватний порт</li><li>Судова недоторканність</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">Level 15</span><h3>ETERNAL REGENT</h3><div class="price"><span>$</span>850,000</div><ul class="perks"><li>Контроль емісії HYL</li><li>Розпуск Парламенту</li><li>Статус Напівбога</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card" style="background:rgba(255,204,0,0.15)"><span class="card-lvl">MAX</span><h3>SOVEREIGN</h3><div class="price"><span>$</span>1,000,000</div><ul class="perks"><li>Співволодіння нацією</li><li>Ключі від усіх систем</li><li>Батько-Засновник</li></ul><button class="btn-join">Стати громадянином</button></div>
+        </div>
+    </section> 
+
+    <section id="info">
+        <h2 class="section-title">АРТЕФАКТИ ТА ВАЛЮТА</h2>
+        <div class="hyl-grid">
+            <div class="hyl-box" onclick="openImage('прапор.jpg')"><img src="прапор.jpg"><span>Flag</span></div>
+            <div class="hyl-box" onclick="openImage('герб.jpg')"><img src="герб.jpg"><span>Coat of Arms</span></div>
+            <div class="hyl-box" onclick="openImage('паспорт.jpg')"><img src="паспорт.jpg"><span>Passport</span></div>
+            <div class="hyl-box" onclick="openImage('ID-карта.jpg')"><img src="ID-карта.jpg"><span>ID Card</span></div>
+            <div class="hyl-box" onclick="openImage('права.jpg')"><img src="права.jpg"><span>License</span></div>
+            
+            <div class="hyl-box" onclick="openImage('1гіл-пер.jpg')"><img src="1гіл-пер.jpg"><span>1 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('1гіл-зад.jpg')"><img src="1гіл-зад.jpg"><span>1 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('2гіли-пер.jpg')"><img src="2гіли-пер.jpg"><span>2 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('2гіли-зад.jpg')"><img src="2гіли-зад.jpg"><span>2 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('5гіл-пер.jpg')"><img src="5гіл-пер.jpg"><span>5 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('5гіл-зад.jpg')"><img src="5гіл-зад.jpg"><span>5 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('10гіл-пер.jpg')"><img src="10гіл-пер.jpg"><span>10 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('10гіл-зад.jpg')"><img src="10гіл-зад.jpg"><span>10 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('20гіл-пер.jpg')"><img src="20гіл-пер.jpg"><span>20 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('20гіл-зад.jpg')"><img src="20гіл-зад.jpg"><span>20 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('50гіл-пер.jpg')"><img src="50гіл-пер.jpg"><span>50 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('50гіл-зад.jpg')"><img src="50гіл-зад.jpg"><span>50 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('100гіл-пер.jpg')"><img src="100гіл-пер.jpg"><span>100 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('100гіл-зад.jpg')"><img src="100гіл-зад.jpg"><span>100 HYL (Back)</span></div>
+
+            <div class="donation-window">
+                <h3>ДОБРОВІЛЬНИЙ ВНЕСОК</h3>
+                <p>Ваша підтримка — це паливо для двигуна свободи. Будь-яка сума наближає момент повної незалежності Гілеї.</p>
+                <button class="cta-hero" style="border-color: var(--gold); color: var(--gold); margin-top: 20px;">Зробити внесок</button>
+            </div>
+        </div>
+
+        <div class="philosophy-section">
+            <div class="phil-grid">
+                <div class="phil-card">
+                    <h2>ТЕХНОЛОГІЇ</h2>
+                    <p>Ми використовуємо децентралізовані протоколи для забезпечення надійності реєстрів власності. В Гілеї-Нова ваш актив належить тільки вам — це гарантовано математикою, а не політиками.</p>
+                </div>
+                <div class="phil-card">
+                    <h2>ВІЛЬНІСТЬ</h2>
+                    <p>Свобода пересування, свобода капіталу та свобода думки. Ми створюємо прецедент держави, де громадянин — це клієнт та співвласник, а не ресурс.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <h2>CENTRAL COMMUNICATIONS HUB</h2>
+            <p>Громадяни та майбутні партнери! Тут ми об'єднуємо зусилля.</p>
+            <a href="mailto:hylaea.nova@gmail.com" class="contact-link">HYLAEA.NOVA@GMAIL.COM</a>
+            <p style="font-style: italic; opacity: 0.6;">"Надійність цифрового коду. Вільність фізичного простору. Майбутнє належить суверенним."</p>
+        </div>
+    </section>
+
+    <div id="modal" onclick="closeImage()"><img id="modalImg" src=""></div>
+    <footer>&copy; 2025 HYLAEA-NOVA | THE SOVEREIGNTY PROJECT</footer> 
+
+    <script>
+        const popTarget = 0;
+        const raisedTarget = 0;
+        const totalPrice = 15000000;
+
+        function animate() {
+            let p=0, r=0;
+            const timer = setInterval(() => {
+                p += popTarget/100; r += raisedTarget/100;
+                if(p >= popTarget) {
+                    clearInterval(timer);
+                    update(popTarget, raisedTarget);
+                } else {
+                    update(p, r);
+                }
+            }, 30);
+        }
+
+        function update(p, r) {
+            const curR = Math.floor(r);
+            document.getElementById('pop-count').innerText = Math.floor(p).toLocaleString();
+            document.getElementById('fund-count').innerText = curR.toLocaleString();
+            document.getElementById('rem-count').innerText = (totalPrice - curR).toLocaleString();
+            document.getElementById('t-raised').innerText = curR.toLocaleString();
+            document.getElementById('t-rem').innerText = (totalPrice - curR).toLocaleString();
+        }
+
+        window.addEventListener('scroll', () => {
+            const f = document.getElementById('forest-bg');
+            const l = document.getElementById('leaf-container');
+            const cTop = document.getElementById('citizenship').offsetTop;
+            if(window.pageYOffset >= cTop - 600) { f.style.opacity = "1"; l.style.display = "block"; }
+            else { f.style.opacity = "0"; l.style.display = "none"; }
+        });
+
+        function scrollToTab(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+        
+        function openImage(url) { 
+            document.getElementById('modal').style.display = 'flex'; 
+            document.getElementById('modalImg').src = url; 
+        }
+        
+        function closeImage() { 
+            document.getElementById('modal').style.display = 'none'; 
+            document.getElementById('modalImg').src = '';
+        }
+        
+        window.onload = () => {
+            const cont = document.getElementById('leaf-container');
+            for(let i=0; i<40; i++) {
+                let leaf = document.createElement('div'); leaf.className='leaf';
+                leaf.style.setProperty('--x', Math.random()*100+'vw');
+                leaf.style.animationDelay = Math.random()*10+'s';
+                leaf.style.left = Math.random()*100+'vw';
+                cont.appendChild(leaf);
+            }
+            animate();
+        };
+    </script> 
+</body> 
+</html>
