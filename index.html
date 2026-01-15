@@ -1,4 +1,4 @@
-A<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="uk">
 <head> 
     <meta charset="UTF-8"> 
@@ -63,7 +63,7 @@ A<!DOCTYPE html>
         .main-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
         .main-img-box:hover img { transform: scale(1.05); }
         
-        .map-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .map-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto 100px; padding: 0 20px; }
         .map-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; aspect-ratio: 16/10; cursor: pointer; }
         .map-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
 
@@ -119,7 +119,7 @@ A<!DOCTYPE html>
 
     <nav> 
         <button class="nav-btn" onclick="scrollToTab('home')">МАНІФЕСТ</button> 
-        <button class="nav-btn" onclick="scrollToTab('territory')">ОСТРІВ</button> 
+        <button class="nav-btn" onclick="scrollToTab('territory')">ОСТРОВИ</button> 
         <button class="nav-btn" style="color:var(--gold)" onclick="scrollToTab('citizenship')">ГРОМАДЯНСТВО</button> 
         <button class="nav-btn" onclick="scrollToTab('info')">АРТЕФАКТИ</button>
     </nav> 
@@ -143,21 +143,36 @@ A<!DOCTYPE html>
     </section> 
 
     <section id="territory"> 
-        <h2 class="section-title">ISLA CÉBACO | ТЕРИТОРІЯ</h2>
+        <h2 class="section-title">ISLA CÉBACO | ГОЛОВНИЙ ХАБ</h2>
         <div class="territory-stats">
-            <div class="t-stat-card"><span class="t-stat-val">15,000,000</span><span class="t-stat-label">Ціна Острова $</span></div>
-            <div class="t-stat-card"><span class="t-stat-val" id="t-raised">0</span><span class="t-stat-label">Вже накопичено $</span></div>
-            <div class="t-stat-card"><span class="t-stat-val" id="t-rem">15,000,000</span><span class="t-stat-label">Необхідна сума $</span></div>
+            <div class="t-stat-card"><span class="t-stat-val">50.000.000</span><span class="t-stat-label">Ціна $</span></div>
+            <div class="t-stat-card"><span class="t-stat-val" id="t-raised">0</span><span class="t-stat-label">Накопичено $</span></div>
+            <div class="t-stat-card"><span class="t-stat-val" id="t-rem">50.000.000</span><span class="t-stat-label">Залишилось $</span></div>
         </div>
-
         <div class="main-img-box" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f858b5ef.jpg-1360-1100.jpg')">
             <img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f858b5ef.jpg-1360-1100.jpg">
         </div>
         <div class="map-grid">
             <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f765658e.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f765658e.jpg-1360-1100.jpg"></div>
             <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f9a82465.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f9a82465.jpg-1360-1100.jpg"></div>
-            <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79fa147975.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79fa147975.jpg-1360-1100.jpg"></div>
-            <div class="map-card" onclick="openImage('https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f1dc4148.jpg-1360-1100.jpg')"><img src="https://www.privateislandsonline.com/uploads/resize/_1205_5bb79f1dc4148.jpg-1360-1100.jpg"></div>
+        </div>
+
+        <h2 class="section-title">ISLA GUAFO | ПІВДЕННИЙ ФОРПОСТ</h2>
+        <div class="main-img-box" onclick="openImage('guafo_main.jpg')">
+            <img src="https://images.unsplash.com/photo-1505881502353-a1986add3762?auto=format&fit=crop&w=1200&q=80">
+        </div>
+        <div class="map-grid">
+            <div class="map-card" onclick="openImage('guafo_1.jpg')"><img src="https://images.unsplash.com/photo-1467339598278-0704214f944d?auto=format&fit=crop&w=600&q=80"></div>
+            <div class="map-card" onclick="openImage('guafo_2.jpg')"><img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=600&q=80"></div>
+        </div>
+
+        <h2 class="section-title">PRINCE OF WALES ISLAND | СТРАТЕГІЧНИЙ РЕЗЕРВ</h2>
+        <div class="main-img-box" onclick="openImage('prince_main.jpg')">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80">
+        </div>
+        <div class="map-grid">
+            <div class="map-card" onclick="openImage('prince_1.jpg')"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80"></div>
+            <div class="map-card" onclick="openImage('prince_2.jpg')"><img src="https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&w=600&q=80"></div>
         </div>
     </section> 
 
@@ -189,7 +204,6 @@ A<!DOCTYPE html>
             <div class="hyl-box" onclick="openImage('прапор.jpg')"><img src="прапор2.jpg"><span>Flag</span></div>
             <div class="hyl-box" onclick="openImage('герб.jpg')"><img src="герб1.jpg"><span>Coat of Arms</span></div>
             <div class="hyl-box" onclick="openImage('паспорт.jpg')"><img src="паспорт сер.jpg"><span>Passport</span></div>
-            <div class="hyl-box" onclick="openImage('ID-карта.jpg')"><img src="ID-карта.jpg"><span>ID Card</span></div>
             <div class="hyl-box" onclick="openImage('права.jpg')"><img src="права пер.jpg"><span>License</span></div>
             
             <div class="hyl-box" onclick="openImage('1гіл-пер2.jpg')"><img src="1гіл пер2.jpg"><span>1 HYL (Face)</span></div>
@@ -204,8 +218,6 @@ A<!DOCTYPE html>
             <div class="hyl-box" onclick="openImage('20гіл-зад.jpg')"><img src="20гіл-зад.jpg"><span>20 HYL (Back)</span></div>
             <div class="hyl-box" onclick="openImage('50гіл-пер.jpg')"><img src="50гіл-пер.jpg"><span>50 HYL (Face)</span></div>
             <div class="hyl-box" onclick="openImage('50гіл-зад.jpg')"><img src="50гіл-зад.jpg"><span>50 HYL (Back)</span></div>
-            <div class="hyl-box" onclick="openImage('100гіл-пер.jpg')"><img src="100гіл-пер.jpg"><span>100 HYL (Face)</span></div>
-            <div class="hyl-box" onclick="openImage('100гіл-зад.jpg')"><img src="100гіл-зад.jpg"><span>100 HYL (Back)</span></div>
 
             <div class="donation-window">
                 <h3>ДОБРОВІЛЬНИЙ ВНЕСОК</h3>
@@ -236,7 +248,7 @@ A<!DOCTYPE html>
     </section>
 
     <div id="modal" onclick="closeImage()"><img id="modalImg" src=""></div>
-    <footer>&copy; 2025 HYLAEA-NOVA | THE SOVEREIGNTY PROJECT</footer> 
+    <footer>&copy; 2026 HYLAEA-NOVA | THE SOVEREIGNTY PROJECT</footer> 
 
     <script>
         const popTarget = 0;
@@ -268,9 +280,12 @@ A<!DOCTYPE html>
         window.addEventListener('scroll', () => {
             const f = document.getElementById('forest-bg');
             const l = document.getElementById('leaf-container');
-            const cTop = document.getElementById('citizenship').offsetTop;
-            if(window.pageYOffset >= cTop - 600) { f.style.opacity = "1"; l.style.display = "block"; }
-            else { f.style.opacity = "0"; l.style.display = "none"; }
+            const cElem = document.getElementById('citizenship');
+            if(cElem) {
+                const cTop = cElem.offsetTop;
+                if(window.pageYOffset >= cTop - 600) { f.style.opacity = "1"; l.style.display = "block"; }
+                else { f.style.opacity = "0"; l.style.display = "none"; }
+            }
         });
 
         function scrollToTab(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
