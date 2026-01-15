@@ -88,26 +88,43 @@
 
         /* --- ARTEFACTS (HYL GRID) --- */
         .hyl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto 100px; padding: 0 20px; }
-        .hyl-box { background: rgba(0,242,255,0.05); border: 1px solid rgba(0,242,255,0.2); border-radius: 20px; aspect-ratio: 16/10; display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative; cursor: pointer; }
-        .hyl-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0.9; transition: 0.4s; }
-        .hyl-box:hover img { opacity: 1; transform: scale(1.05); }
-        .hyl-box span { z-index: 2; font-weight: 700; color: #fff; background: rgba(0,0,0,0.7); padding: 8px 18px; border-radius: 40px; font-size: 10px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1); }
+        .hyl-box { background: rgba(0,242,255,0.05); border: 1px solid rgba(0,242,255,0.2); border-radius: 20px; aspect-ratio: 16/10; display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative; cursor: pointer; transition: 0.4s; }
+        .hyl-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0.9; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hyl-box:hover img { opacity: 1; transform: scale(1.08); }
+        .hyl-box span { z-index: 2; font-weight: 700; color: #fff; background: rgba(0,0,0,0.7); padding: 8px 18px; border-radius: 40px; font-size: 10px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1); pointer-events: none; }
 
         .donation-window { grid-column: span 2; background: linear-gradient(45deg, rgba(255,204,0,0.1), rgba(0,242,255,0.1)); border: 2px dashed var(--gold); padding: 60px; border-radius: 40px; text-align: center; margin-top: 50px; }
         .donation-window h3 { color: var(--gold); font-family: 'Cinzel'; font-size: 30px; letter-spacing: 8px; margin-bottom: 20px; }
 
-        /* --- PHILOSOPHY --- */
-        .philosophy-section { max-width: 1100px; margin: 150px auto; padding: 0 40px; }
-        .phil-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; }
-        .phil-card h2 { color: var(--accent); font-family: 'Cinzel'; letter-spacing: 5px; }
-        .phil-card p { font-size: 18px; line-height: 1.8; opacity: 0.8; }
+        /* --- MODAL (OVERLAY) --- */
+        #modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(2, 6, 23, 0.95); 
+            z-index: 9999; 
+            justify-content: center; 
+            align-items: center; 
+            backdrop-filter: blur(15px);
+            cursor: zoom-out;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- CONTACT --- */
-        .contact-box { background: linear-gradient(135deg, rgba(2,6,23,1) 0%, rgba(0,242,255,0.15) 100%); border: 2px solid var(--accent); border-radius: 60px; padding: 120px 40px; margin: 150px auto; max-width: 1000px; text-align: center; position: relative; }
-        .contact-link { font-size: clamp(20px, 5vw, 45px); color: var(--accent); text-decoration: none; font-weight: 700; letter-spacing: 4px; display: block; margin: 40px 0; }
+        #modal img { 
+            max-width: 90%; 
+            max-height: 85vh; 
+            border: 2px solid var(--accent); 
+            box-shadow: 0 0 100px rgba(0,242,255,0.4); 
+            border-radius: 10px;
+            transform: scale(0.8);
+            animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; justify-content: center; align-items: center; cursor: pointer; }
-        #modal img { max-width: 90%; max-height: 90%; border: 1px solid var(--accent); box-shadow: 0 0 50px rgba(0,242,255,0.3); }
         footer { padding: 100px; text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 6px; text-transform: uppercase; }
     </style> 
 </head> 
@@ -158,21 +175,21 @@
         </div>
 
         <h2 class="section-title">ISLA GUAFO | ПІВДЕННИЙ ФОРПОСТ</h2>
-        <div class="main-img-box" onclick="openImage('guafo_main.jpg')">
+        <div class="main-img-box" onclick="openImage('https://images.unsplash.com/photo-1505881502353-a1986add3762?auto=format&fit=crop&w=1200&q=80')">
             <img src="https://images.unsplash.com/photo-1505881502353-a1986add3762?auto=format&fit=crop&w=1200&q=80">
         </div>
         <div class="map-grid">
-            <div class="map-card" onclick="openImage('guafo_1.jpg')"><img src="https://images.unsplash.com/photo-1467339598278-0704214f944d?auto=format&fit=crop&w=600&q=80"></div>
-            <div class="map-card" onclick="openImage('guafo_2.jpg')"><img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=600&q=80"></div>
+            <div class="map-card" onclick="openImage('https://images.unsplash.com/photo-1467339598278-0704214f944d?auto=format&fit=crop&w=600&q=80')"><img src="https://images.unsplash.com/photo-1467339598278-0704214f944d?auto=format&fit=crop&w=600&q=80"></div>
+            <div class="map-card" onclick="openImage('https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=600&q=80')"><img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=600&q=80"></div>
         </div>
 
         <h2 class="section-title">PRINCE OF WALES ISLAND | СТРАТЕГІЧНИЙ РЕЗЕРВ</h2>
-        <div class="main-img-box" onclick="openImage('prince_main.jpg')">
+        <div class="main-img-box" onclick="openImage('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80')">
             <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80">
         </div>
         <div class="map-grid">
-            <div class="map-card" onclick="openImage('prince_1.jpg')"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80"></div>
-            <div class="map-card" onclick="openImage('prince_2.jpg')"><img src="https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&w=600&q=80"></div>
+            <div class="map-card" onclick="openImage('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80')"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80"></div>
+            <div class="map-card" onclick="openImage('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&w=600&q=80')"><img src="https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&w=600&q=80"></div>
         </div>
     </section> 
 
@@ -180,77 +197,42 @@
         <h2 class="section-title">СТУПЕНІ ГРОМАДЯНСТВА</h2>
         <div class="citizen-grid">
             <div class="citizen-card"><span class="card-lvl">Level 01</span><h3>E-RESIDENT</h3><div class="price"><span>$</span>50</div><ul class="perks"><li>Цифровий ID</li><li>Discord-ратуша</li><li>Право подачі петицій</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card"><span class="card-lvl">Level 02</span><h3>VOTER</h3><div class="price"><span>$</span>150</div><ul class="perks"><li>Право голосу в DAO</li><li>Пошта @hylaea.nova</li><li>Доступ до звітів</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card"><span class="card-lvl">Level 03</span><h3>FULL CITIZEN</h3><div class="price"><span>$</span>250</div><ul class="perks"><li>Фізичний паспорт</li><li>1 сотка землі</li><li>Повне виборче право</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card"><span class="card-lvl">Level 04</span><h3>PATRIOT</h3><div class="price"><span>$</span>500</div><ul class="perks"><li>Військовий квиток</li><li>2 сотки землі</li><li>Право на зброю</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card"><span class="card-lvl">Level 05</span><h3>DIPLOMAT</h3><div class="price"><span>$</span>1,000</div><ul class="perks"><li>Дипломатичний ID</li><li>Представницькі права</li><li>VIP канали зв'язку</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 06</span><h3>INVESTOR</h3><div class="price"><span>$</span>2,500</div><ul class="perks"><li>5 соток (берег)</li><li>Частка від туризму</li><li>Золотий сертифікат</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 07</span><h3>SENATOR</h3><div class="price"><span>$</span>5,000</div><ul class="perks"><li>Верхня палата Ради</li><li>Персональна печатка</li><li>Законодавча воля</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 08</span><h3>ARCHITECT</h3><div class="price"><span>$</span>10,000</div><ul class="perks"><li>15 соток землі</li><li>Ліцензія забудови</li><li>Ім'я в назві кварталу</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 09</span><h3>MINISTER</h3><div class="price"><span>$</span>25,000</div><ul class="perks"><li>Керівництво відомством</li><li>Резиденція на острові</li><li>Прямий вплив на курс</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 10</span><h3>COMMANDER</h3><div class="price"><span>$</span>50,000</div><ul class="perks"><li>Штаб оборони</li><li>Власна гвардія (5 осіб)</li><li>Сектор безпеки</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 11</span><h3>GUARDIAN</h3><div class="price"><span>$</span>100,000</div><ul class="perks"><li>Опікун нац. активів</li><li>Пожиттєва рента HYL</li><li>VIP медицина</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 12</span><h3>ELITE FOUNDER</h3><div class="price"><span>$</span>250,000</div><ul class="perks"><li>50 Га території</li><li>Право ВЕТО у Раді</li><li>Безподатковий статус</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 13</span><h3>LEGEND</h3><div class="price"><span>$</span>500,000</div><ul class="perks"><li>100 Га приватної землі</li><li>1% з експорту нації</li><li>Зал Слави Гілеї</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 14</span><h3>SUPREME ARCHON</h3><div class="price"><span>$</span>750,000</div><ul class="perks"><li>Власний шельф</li><li>Приватний порт</li><li>Судова недоторканність</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card"><span class="card-lvl">Level 15</span><h3>ETERNAL REGENT</h3><div class="price"><span>$</span>850,000</div><ul class="perks"><li>Контроль емісії HYL</li><li>Розпуск Парламенту</li><li>Статус Напівбога</li></ul><button class="btn-join">Стати громадянином</button></div>
-            <div class="citizen-card special-card" style="background:rgba(255,204,0,0.15)"><span class="card-lvl">MAX</span><h3>SOVEREIGN</h3><div class="price"><span>$</span>1,000,000</div><ul class="perks"><li>Співволодіння нацією</li><li>Ключі від усіх систем</li><li>Батько-Засновник</li></ul><button class="btn-join">Стати громадянином</button></div>
+            <div class="citizen-card special-card"><span class="card-lvl">MAX</span><h3>SOVEREIGN</h3><div class="price"><span>$</span>1,000,000</div><ul class="perks"><li>Співволодіння нацією</li><li>Ключі від усіх систем</li><li>Батько-Засновник</li></ul><button class="btn-join">Стати громадянином</button></div>
         </div>
     </section> 
 
     <section id="info">
         <h2 class="section-title">АРТЕФАКТИ ТА ВАЛЮТА</h2>
         <div class="hyl-grid">
-            <div class="hyl-box" onclick="openImage('прапор.jpg')"><img src="прапор2.jpg"><span>Flag</span></div>
-            <div class="hyl-box" onclick="openImage('герб.jpg')"><img src="герб1.jpg"><span>Coat of Arms</span></div>
-            <div class="hyl-box" onclick="openImage('паспорт.jpg')"><img src="паспорт сер.jpg"><span>Passport</span></div>
-            <div class="hyl-box" onclick="openImage('права.jpg')"><img src="права пер.jpg"><span>License</span></div>
+            <div class="hyl-box" onclick="openImage('прапор2.jpg')"><img src="прапор2.jpg"><span>Flag</span></div>
+            <div class="hyl-box" onclick="openImage('герб1.jpg')"><img src="герб1.jpg"><span>Coat of Arms</span></div>
+            <div class="hyl-box" onclick="openImage('паспорт сер.jpg')"><img src="паспорт сер.jpg"><span>Passport</span></div>
+            <div class="hyl-box" onclick="openImage('права пер.jpg')"><img src="права пер.jpg"><span>License</span></div>
             
-            <div class="hyl-box" onclick="openImage('1гіл-пер2.jpg')"><img src="1гіл пер2.jpg.jpg"><span>1 HYL (Face)</span></div>
-            <div class="hyl-box" onclick="openImage('1гіл-зад2.jpg')"><img src="1гіл зад2.jpg"><span>1 HYL (Back)</span></div>
-            <div class="hyl-box" onclick="openImage('2гіли пер 1.jpg')"><img src="2гіли пер1.jpg"><span>2 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('1гіл пер2.jpg')"><img src="1гіл пер2.jpg"><span>1 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('1гіл зад2.jpg')"><img src="1гіл зад2.jpg"><span>1 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('2гіли пер1.jpg')"><img src="2гіли пер1.jpg"><span>2 HYL (Face)</span></div>
             <div class="hyl-box" onclick="openImage('2гіли зад 1.jpg')"><img src="2гіли зад 1.jpg"><span>2 HYL (Back)</span></div>
             <div class="hyl-box" onclick="openImage('5гіл-пер.jpg')"><img src="5гіл-пер.jpg"><span>5 HYL (Face)</span></div>
             <div class="hyl-box" onclick="openImage('5гіл-зад.jpg')"><img src="5гіл-зад.jpg"><span>5 HYL (Back)</span></div>
-            <div class="hyl-box" onclick="openImage('10гал пер.jpg')"><img src="10 гал пер.jpg"><span>10 HYL (Face)</span></div>
-            <div class="hyl-box" onclick="openImage('10гіл зад.jpg')"><img src="10 гіл зад.jpg"><span>10 HYL (Back)</span></div>
-            <div class="hyl-box" onclick="openImage('20гіл-пер.jpg')"><img src="20гіл-пер.jpg"><span>20 HYL (Face)</span></div>
-            <div class="hyl-box" onclick="openImage('20гіл-зад.jpg')"><img src="20гіл-зад.jpg"><span>20 HYL (Back)</span></div>
-            <div class="hyl-box" onclick="openImage('50гіл-пер.jpg')"><img src="50гіл-пер.jpg"><span>50 HYL (Face)</span></div>
-            <div class="hyl-box" onclick="openImage('50гіл-зад.jpg')"><img src="50гіл-зад.jpg"><span>50 HYL (Back)</span></div>
+            <div class="hyl-box" onclick="openImage('10 гал пер.jpg')"><img src="10 гал пер.jpg"><span>10 HYL (Face)</span></div>
+            <div class="hyl-box" onclick="openImage('10 гіл зад.jpg')"><img src="10 гіл зад.jpg"><span>10 HYL (Back)</span></div>
 
             <div class="donation-window">
                 <h3>ДОБРОВІЛЬНИЙ ВНЕСОК</h3>
-                <p>Ваша підтримка — це паливо для двигуна свободи. Будь-яка сума наближає момент повної незалежності Гілеї.</p>
                 <button class="cta-hero" style="border-color: var(--gold); color: var(--gold); margin-top: 20px;">Зробити внесок</button>
             </div>
         </div>
-
-        <div class="philosophy-section">
-            <div class="phil-grid">
-                <div class="phil-card">
-                    <h2>ТЕХНОЛОГІЇ</h2>
-                    <p>Ми використовуємо децентралізовані протоколи для забезпечення надійності реєстрів власності. В Гілеї-Нова ваш актив належить тільки вам — це гарантовано математикою, а не політиками.</p>
-                </div>
-                <div class="phil-card">
-                    <h2>ВІЛЬНІСТЬ</h2>
-                    <p>Свобода пересування, свобода капіталу та свобода думки. Ми створюємо прецедент держави, де громадянин — це клієнт та співвласник, а не ресурс.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact-box">
-            <h2>CENTRAL COMMUNICATIONS HUB</h2>
-            <p>Громадяни та майбутні партнери! Тут ми об'єднуємо зусилля.</p>
-            <a href="mailto:hylea.novva@gmail.com" class="contact-link">HYLAEA.NOVA@GMAIL.COM</a>
-            <p style="font-style: italic; opacity: 0.6;">"Надійність цифрового коду. Вільність фізичного простору. Майбутнє належить суверенним."</p>
-        </div>
     </section>
 
-    <div id="modal" onclick="closeImage()"><img id="modalImg" src=""></div>
+    <div id="modal" onclick="closeImage()">
+        <img id="modalImg" src="" alt="Enlarged View">
+    </div>
+
     <footer>&copy; 2026 HYLAEA-NOVA | THE SOVEREIGNTY PROJECT</footer> 
 
     <script>
+        // Анімація статистики
         const popTarget = 0;
         const raisedTarget = 50;
         const totalPrice = 50000000;
@@ -277,6 +259,27 @@
             document.getElementById('t-rem').innerText = (totalPrice - curR).toLocaleString();
         }
 
+        // Функція для збільшення зображень
+        function openImage(url) { 
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = url; 
+            modal.style.display = 'flex'; 
+            document.body.style.overflow = 'hidden'; // Заборона скролу під модалкою
+        }
+        
+        function closeImage() { 
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // Скрол до секцій
+        function scrollToTab(id) { 
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); 
+        }
+
+        // Форест ефект та листя
         window.addEventListener('scroll', () => {
             const f = document.getElementById('forest-bg');
             const l = document.getElementById('leaf-container');
@@ -288,18 +291,6 @@
             }
         });
 
-        function scrollToTab(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
-        
-        function openImage(url) { 
-            document.getElementById('modal').style.display = 'flex'; 
-            document.getElementById('modalImg').src = url; 
-        }
-        
-        function closeImage() { 
-            document.getElementById('modal').style.display = 'none'; 
-            document.getElementById('modalImg').src = '';
-        }
-        
         window.onload = () => {
             const cont = document.getElementById('leaf-container');
             for(let i=0; i<40; i++) {
